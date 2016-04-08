@@ -12,8 +12,9 @@ async def request():
         for i in range (loop):
             with aiohttp.ClientSession() as session:            
                 async with session.get(url, headers=headers) as resp:
-                    # with open('resp.html','w',encoding='utf-8') as f:
-                    #     f.write(await resp.text(encoding='utf-8'))
+                    if n%200 ==0:
+                        with open('resp.html','w',encoding='utf-8') as f:
+                            f.write(await resp.text(encoding='utf-8'))
                     print('sum requests of',n*loop+i,resp.status)
         await asyncio.sleep(2*rd.random())
         n=n+1           
